@@ -4,18 +4,22 @@
    "port": 5432,
    "username": "postgres",
    "password": "1234",
-   "database": "api",
+   "database": "book",
    "synchronize": true,
    "logging": false,
    "entities": [
-      "app/src/user/entity/*.ts"
+      "app/**/entities/*.ts"
+   ],
+   
+   "subscribers": [
+      "app/src/database/subscriber/**/*.ts"
    ],
    "migrations": [
       "app/src/migrations/*.ts"
    ],
    "cli": {
-      "entitiesDir": "app/src/*/entity",
-      "migrationsDir": "app/src//migrations",
+      "entitiesDir": "app/**/entities",
+      "migrationsDir": "app/src/migrations",
       "subscribersDir": "app/src/database/subscriber"
    }
 }

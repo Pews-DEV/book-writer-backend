@@ -1,10 +1,7 @@
-import { EntityRepository, Repository } from 'typeorm'
+import UserRepository from './UserRepository'
 
-import User from '../entity'
-
-@EntityRepository(User)
-class UserRepository extends Repository<User> {
-    
+const repositories = {
+  UserRepository: UserRepository
 }
 
-export { UserRepository };
+export default repositories

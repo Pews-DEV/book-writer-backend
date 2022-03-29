@@ -40,10 +40,6 @@ class User {
       if (!this.id) {
         this.id = uuid()
       }
-
-      // TODO: encriptar password nesse momento
-      const encryptedPassword = this.password
-      this.password = encryptedPassword 
     }
 }
 
