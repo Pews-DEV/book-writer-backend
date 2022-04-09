@@ -20,6 +20,7 @@
       "@types/uuid": "^8.3.4",
       "bcryptjs": "^2.4.3",
       "express": "^4.17.3",
+      "git-commit-msg-linter": "^4.1.1",
       "jsonwebtoken": "^8.5.1",
       "pg": "^8.4.0",
       "reflect-metadata": "^0.1.10",
