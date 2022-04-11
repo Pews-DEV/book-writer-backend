@@ -1,0 +1,9 @@
+{
+    "hooks": {
+        "pre-commit": "lint-staged"
+    },
+    "private": true,
+    "scripts": {
+      "postinstall": "husky install"
+    }
+  }

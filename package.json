@@ -12,19 +12,20 @@
       "eslint-plugin-prettier": "3.2.0",
       "prettier": "^2.6.2",
       "ts-node": "3.3.0",
-      "typescript": "3.3.3333"
-   },
-   "dependencies": {
+      "typescript": "3.3.3333",
+      "husky": "^7.0.4",
       "@types/express": "^4.17.13",
       "@types/jsonwebtoken": "^8.5.8",
       "@types/uuid": "^8.3.4",
+      "git-commit-msg-linter": "^4.1.1",
+      "ts-node-dev": "^1.1.8"
+   },
+   "dependencies": {
       "bcryptjs": "^2.4.3",
       "express": "^4.17.3",
-      "git-commit-msg-linter": "^4.1.1",
       "jsonwebtoken": "^8.5.1",
       "pg": "^8.4.0",
       "reflect-metadata": "^0.1.10",
-      "ts-node-dev": "^1.1.8",
       "typeorm": "0.2.41",
       "uuid": "^8.3.2"
    },
