@@ -3,7 +3,7 @@ import { Router } from "express";
 import { isAuthenticated } from "./middlewares/IsAuthenticated";
 import { IsAdmin } from "./middlewares/IsAdmin";
 
-import userRouter from './user/router/UserRouters'
+import userRouter from './user/routes'
 import tokenJWTRouter from "./authenticate/router/AutheticateUserRouter";
 
 const routers = Router()
