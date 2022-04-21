@@ -1,7 +1,7 @@
 import { hash } from 'bcryptjs'
 import { EntityRepository, Repository } from 'typeorm'
 
-import User from '../entities/User'
+import User from '../../src/entities/User'
 import { ICreateUser } from '../@types'
 
 
