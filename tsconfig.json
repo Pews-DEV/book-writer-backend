@@ -1,5 +1,6 @@
 {
    "compilerOptions": {
+      "baseUrl": "app",
       "lib": [
          "es5",
          "es6"
@@ -12,6 +13,9 @@
       "experimentalDecorators": true,
       "sourceMap": true,
       "strictPropertyInitialization": false,
-      "resolveJsonModule": true
+      "resolveJsonModule": true,
+      "paths": {
+         "@/": ["*"]
+      }
    }
 }
