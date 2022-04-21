@@ -8,7 +8,8 @@ import { IPayload } from "./@types/authentication";
 
 export async function isAuthenticated(request: Request, response: Response, next: NextFunction){
     const authHeader = request.headers.authorization
-    const [prefix, token] = authHeader.split(' ')
+
+    const [prefix, token] = authHeader[0].split(' ')
 
     if(!authHeader || prefix !== 'Bearer'){
         throw new Error('Not Unauthorized')
