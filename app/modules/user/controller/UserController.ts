@@ -16,8 +16,11 @@ export default class UserController {
             })
 
         } catch(err){
-            console.log(err)
-            throw new Error('Dados inválidos')
+            return response.status(err.statusCode).json({
+                error: err.message,
+                status_code: err.statusCode,
+                success: false
+            })
         }
     }
 }

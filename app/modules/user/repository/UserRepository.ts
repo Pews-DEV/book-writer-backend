@@ -2,6 +2,7 @@ import { EntityRepository, Repository } from 'typeorm'
 
 import hash_password from 'app/utils/becrypt/hashPassword'
 import User from 'app/src/entities/User'
+import Error from '@/errors'
 
 import { ICreateUser } from '../@types'
 
@@ -11,7 +12,7 @@ class UserRepository extends Repository<User> {
     async createAndSave(user: ICreateUser) {
         const passwordHash = await hash_password(user.password)
         
-        this.handleValidation(user.email, user.username)
+        await this.handleValidation(user.email, user.username)
 
         const newUser = this.create({
           ...user,
@@ -28,7 +29,7 @@ class UserRepository extends Repository<User> {
         const isEmailUnique = await this.findOne({ where: { email }})
 
         if (isEmailUnique || isUsernameUnique) {
-            throw new Error('existing username or email')
+            throw new Error('existing username or email data', 422)
         }
     }
 
@@ -36,7 +37,6 @@ class UserRepository extends Repository<User> {
         const user = await this.findOne({ where: { email}})
         return user
     }
-
 }
 
 export default UserRepository;
