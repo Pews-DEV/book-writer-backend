@@ -5,23 +5,9 @@ import { ICreateUser } from '../@types'
 import { getCustomRepository } from 'typeorm'
 
 class CreateUserService{
-    async execute({ 
-        first_name, 
-        last_name, 
-        email, 
-        username, 
-        password, 
-        is_admin=false 
-    }: ICreateUser): Promise<User> {
+    async execute(user: ICreateUser): Promise<User> {
         const userRepository = getCustomRepository(UserRepository)
-        return await userRepository.createAndSave({
-            first_name, 
-            last_name, 
-            email, 
-            username, 
-            password, 
-            is_admin
-        })
+        return await userRepository.createAndSave(user)
     }
 }
 

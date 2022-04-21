@@ -1,6 +1,6 @@
-import { hash } from 'bcryptjs'
 import { EntityRepository, Repository } from 'typeorm'
 
+import hash_password from '../../services/becrypt/hashPassword'
 import User from '../../src/entities/User'
 import { ICreateUser } from '../@types'
 
@@ -8,17 +8,13 @@ import { ICreateUser } from '../@types'
 @EntityRepository(User)
 class UserRepository extends Repository<User> {
     async createAndSave(user: ICreateUser) {
-        const passwordHash = await hash(user.password, 8)
+        const passwordHash = await hash_password(user.password)
         
         this.handleValidation(user.email, user.username)
 
         const newUser = this.create({
+          ...user,
           password: passwordHash,
-          first_name: user.first_name, 
-          last_name: user.last_name, 
-          email: user.email, 
-          username: user.username, 
-          is_admin: user.is_admin
         })
         
         await this.save(newUser)
