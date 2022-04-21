@@ -1,6 +1,6 @@
 import { hash } from 'bcryptjs'
 
-async function hash_password(password: string): Promise<string> {
+async function hash_password(password: string) {
   return await hash(password, 8)
 }
 

@@ -1,8 +1,9 @@
-import UserRepository  from '../repository/UserRepository'
-
-import User from '../../../src/entities/User'
-import { ICreateUser } from '../@types'
 import { getCustomRepository } from 'typeorm'
+
+import User from 'app/src/entities/User'
+
+import UserRepository  from '../repository/UserRepository'
+import { ICreateUser } from '../@types'
 
 class CreateUserService{
     async execute(user: ICreateUser): Promise<User> {

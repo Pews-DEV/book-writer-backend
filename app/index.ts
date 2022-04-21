@@ -1,6 +1,6 @@
 import express = require('express');
-import routers from './routers';
 
+import routers from './routers';
 import './src/database'
 
 const app = express();

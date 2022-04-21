@@ -1,6 +1,5 @@
 {
    "compilerOptions": {
-      "baseUrl": "app",
       "lib": [
          "es5",
          "es6"
@@ -14,8 +13,9 @@
       "sourceMap": true,
       "strictPropertyInitialization": false,
       "resolveJsonModule": true,
+      "baseUrl": "./",
       "paths": {
-         "@/": ["*"]
+         "@/*": ["app/*"]
       }
    }
 }

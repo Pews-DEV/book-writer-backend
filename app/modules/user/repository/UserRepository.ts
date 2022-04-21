@@ -1,7 +1,8 @@
 import { EntityRepository, Repository } from 'typeorm'
 
-import hash_password from '../../../services/becrypt/hashPassword'
-import User from '../../../src/entities/User'
+import hash_password from 'app/utils/becrypt/hashPassword'
+import User from 'app/src/entities/User'
+
 import { ICreateUser } from '../@types'
 
 
