@@ -2,7 +2,7 @@ import { compare } from "bcryptjs"
 import { getCustomRepository } from "typeorm"
 import { sign } from 'jsonwebtoken'
 
-import UserRepository from "../../user/repository/UserRepository"
+import UserRepository from "../../modules/user/repository/UserRepository"
 import { IUserAuthetication } from "../@types"
 
 class AuthenticateUserService{

@@ -1,6 +1,6 @@
 import UserRepository  from '../repository/UserRepository'
 
-import User from '../../src/entities/User'
+import User from '../../../src/entities/User'
 import { ICreateUser } from '../@types'
 import { getCustomRepository } from 'typeorm'
 

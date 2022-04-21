@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import { verify } from 'jsonwebtoken';
 import { getCustomRepository } from "typeorm";
-import UserRepository from "../user/repository/UserRepository";
+import UserRepository from "../modules/user/repository/UserRepository";
 import { IPayload } from "./@types/authentication";
 
 
