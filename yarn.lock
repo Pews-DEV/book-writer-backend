@@ -57,7 +57,7 @@
     "@types/qs" "*"
     "@types/range-parser" "*"
 
-"@types/express-validator@^3.0.0":
+"@types/express-validator@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/express-validator/-/express-validator-3.0.0.tgz#e6f3cab842e5ae376a1cfa11295202ec380b68d1"
   integrity sha512-LusnB0YhTXpBT25PXyGPQlK7leE1e41Vezq1hHEUwjfkopM1Pkv2X2Ppxqh9c+w/HZ6Udzki8AJotKNjDTGdkQ==
@@ -497,7 +497,7 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-express-validator@*, express-validator@^6.14.0:
+express-validator@*, express-validator@6.14.0:
   version "6.14.0"
   resolved "https://registry.yarnpkg.com/express-validator/-/express-validator-6.14.0.tgz#8ee7a32bf1ffcf2573db5f17c9cad279698e5d41"
   integrity sha512-ZWHJfnRgePp3FKRSKMtnZVnD1s8ZchWD+jSl7UMseGIqhweCo1Z9916/xXBbJAa6PrA3pUZfkOvIsHZG4ZtIMw==
@@ -1410,7 +1410,7 @@ ts-node@^9.0.0:
     source-map-support "^0.5.17"
     yn "3.1.1"
 
-tsc-alias@^1.6.6:
+tsc-alias@1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/tsc-alias/-/tsc-alias-1.6.6.tgz#1bdda705efa6251b9a62593e8ed4b0285c20803b"
   integrity sha512-wQuIKleaPuQKpTwrzFb1gTOd3ZsB5GqIK+aPyh1okOLfYYNsMyxIypIYctQnSxiJ243iRxLdvNlboZOTEdK1MQ==
@@ -1421,7 +1421,7 @@ tsc-alias@^1.6.6:
     mylas "^2.1.9"
     normalize-path "^3.0.0"
 
-tsconfig-paths@^3.14.1:
+tsconfig-paths@3.14.1:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz#ba0734599e8ea36c862798e920bcf163277b137a"
   integrity sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==
