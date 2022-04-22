@@ -1,8 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm'
 
-import hash_password from 'app/utils/becrypt/hashPassword'
+import hash_password from '@/utils/bcrypt/hashPassword'
 import User from 'app/src/entities/User'
-import Error from '@/errors'
 
 import { ICreateUser } from '../@types'
 import { FIELD_VAR, LENGTH_VAR } from '../defaults'
