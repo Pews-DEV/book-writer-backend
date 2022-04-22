@@ -1,8 +1,8 @@
-import { compare } from 'bcryptjs';
 import { getCustomRepository } from 'typeorm';
 import { sign } from 'jsonwebtoken';
 
-import UserRepository from '../../user/repository/UserRepository';
+import UserRepository from '@/modules/user/repository/UserRepository';
+import checkPassword from '@/utils/bcrypt/checkPassowrd';
 import { IUserAuthetication } from '../@types';
 
 class AuthenticateUserService {
@@ -16,7 +16,7 @@ class AuthenticateUserService {
       throw new Error('404 - Não encontrado');
     }
 
-    const passwordMatch = await compare(password, user.password);
+    const passwordMatch = await checkPassword(password, user.password);
 
     if (!passwordMatch) {
       throw new Error('401 - Dados Incorretos');

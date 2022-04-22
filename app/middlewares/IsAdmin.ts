@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
-import UserRepository from '../user/repository/UserRepository';
+import UserRepository from '../modules/user/repository/UserRepository';
 
 export async function IsAdmin(
   request: Request,

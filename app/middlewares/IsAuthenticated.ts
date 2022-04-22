@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { verify } from 'jsonwebtoken';
 import { getCustomRepository } from 'typeorm';
-import UserRepository from '../user/repository/UserRepository';
+import UserRepository from '../modules/user/repository/UserRepository';
 import { IPayload } from './@types/authentication';
 
 export async function isAuthenticated(
@@ -11,10 +11,11 @@ export async function isAuthenticated(
   next: NextFunction,
 ) {
   const authHeader = request.headers.authorization;
-  const [prefix, token] = authHeader.split(' ');
 
-  if (!authHeader || prefix !== 'Bearer') {
-    throw new Error('Not Unauthorized');
+  const [prefix, token] = authHeader[0].split(' ');
+
+  if (prefix !== 'Bearer') {
+    throw new Error('Token invalid');
   }
 
   try {

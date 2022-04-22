@@ -12,6 +12,10 @@
       "experimentalDecorators": true,
       "sourceMap": true,
       "strictPropertyInitialization": false,
-      "resolveJsonModule": true
+      "resolveJsonModule": true,
+      "baseUrl": "./",
+      "paths": {
+         "@/*": ["app/*"]
+      }
    }
 }
