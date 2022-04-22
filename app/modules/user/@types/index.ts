@@ -1,5 +1,3 @@
-import User from '../../../src/entities/User'
-
 export interface ICreateUser {
   first_name: string;
   last_name: string;
