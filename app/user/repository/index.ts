@@ -1,7 +1,7 @@
-import UserRepository from './UserRepository'
+import UserRepository from './UserRepository';
 
 const repositories = {
-  UserRepository: UserRepository
-}
+  UserRepository: UserRepository,
+};
 
-export default repositories
+export default repositories;
