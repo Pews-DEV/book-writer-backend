@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import userRouter from './modules/user/routes';
-import tokenJWTRouter from './authenticate/router/AutheticateUserRouter';
+import tokenJWTRouter from './modules/authenticate/router/AutheticateUserRouter';
 
 const routers = Router();
 
