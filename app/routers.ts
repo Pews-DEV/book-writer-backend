@@ -10,5 +10,5 @@ const routers = Router();
 
 routers.use('/user', isAuthenticated, IsAdmin, userRouter);
 routers.use('/token', tokenJWTRouter);
-const foo = '';
+
 export default routers;
