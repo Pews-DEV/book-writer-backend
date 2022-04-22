@@ -1,7 +1,7 @@
-import UserController from './UserController'
+import UserController from './UserController';
 
 const controllers = {
-    UserController: UserController
-}
+  UserController: UserController,
+};
 
-export default controllers
+export default controllers;

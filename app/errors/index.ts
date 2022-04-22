@@ -1,11 +1,11 @@
 class Error {
-  public readonly message: string
-  public readonly statusCode: number
+  public readonly message: string;
+  public readonly statusCode: number;
 
-  constructor(message: string, statusCode: number = 400) {
-    this.message = message
-    this.statusCode = statusCode
+  constructor(message: string, statusCode = 400) {
+    this.message = message;
+    this.statusCode = statusCode;
   }
 }
 
-export default Error
+export default Error;

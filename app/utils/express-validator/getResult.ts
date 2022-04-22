@@ -1,8 +1,8 @@
-import { Request } from "express";
-import { validationResult } from "express-validator";
+import { Request } from 'express';
+import { validationResult } from 'express-validator';
 
 function getResult(request: Request) {
-  return validationResult(request)
+  return validationResult(request);
 }
 
-export default getResult
+export default getResult;

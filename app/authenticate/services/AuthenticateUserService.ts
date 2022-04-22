@@ -1,37 +1,37 @@
-import { getCustomRepository } from "typeorm"
-import { sign } from 'jsonwebtoken'
+import { getCustomRepository } from 'typeorm';
+import { sign } from 'jsonwebtoken';
 
-import UserRepository from "@/modules/user/repository/UserRepository"
-import checkPassword from "@/utils/bcrypt/checkPassowrd"
-import { IUserAuthetication } from "../@types"
+import UserRepository from '@/modules/user/repository/UserRepository';
+import checkPassword from '@/utils/bcrypt/checkPassowrd';
+import { IUserAuthetication } from '../@types';
 
-class AuthenticateUserService{
-    async execute(requestUser: IUserAuthetication){
-        const { email, password } = requestUser
-        const userRepository =  getCustomRepository(UserRepository)
+class AuthenticateUserService {
+  async execute(requestUser: IUserAuthetication) {
+    const { email, password } = requestUser;
+    const userRepository = getCustomRepository(UserRepository);
 
-        const user = await userRepository.findOneByEmail(email)
+    const user = await userRepository.findOneByEmail(email);
 
-        if (!user) {
-            throw new Error('404 - Não encontrado')
-        }
-        
-        const passwordMatch = await checkPassword(password, user.password)
-
-        if(!passwordMatch){
-            throw new Error('401 - Dados Incorretos')
-        }
-
-        const token = sign({}, process.env.SECRET_KEY, {
-            subject: user.id,
-            expiresIn: "1d"
-        })
-
-        return {
-            "access": token,
-            status_code: 200
-        }
+    if (!user) {
+      throw new Error('404 - Não encontrado');
     }
+
+    const passwordMatch = await checkPassword(password, user.password);
+
+    if (!passwordMatch) {
+      throw new Error('401 - Dados Incorretos');
+    }
+
+    const token = sign({}, process.env.SECRET_KEY, {
+      subject: user.id,
+      expiresIn: '1d',
+    });
+
+    return {
+      access: token,
+      status_code: 200,
+    };
+  }
 }
 
-export default AuthenticateUserService
+export default AuthenticateUserService;
