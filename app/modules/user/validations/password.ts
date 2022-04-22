@@ -1,7 +1,7 @@
 import getBodyField from '@/utils/express-validator/getBodyField'
 import UserRepository from '../repository/UserRepository'
 
-import { FIELD_VAR, LENGTH_VAR } from '../repository/defaults'
+import { FIELD_VAR, LENGTH_VAR } from '../defaults'
 
 const PASSWORD_LENGTH_ERROR_MESSAGE = UserRepository.LENGTH_ERROR_MESSAGE
   .replace(FIELD_VAR, 'password')

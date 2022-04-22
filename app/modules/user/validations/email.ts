@@ -1,7 +1,7 @@
 import { getCustomRepository } from 'typeorm'
 
 import getBodyField from '@/utils/express-validator/getBodyField'
-import { FIELD_VAR, LENGTH_VAR } from '../repository/defaults'
+import { FIELD_VAR, LENGTH_VAR } from '../defaults'
 import UserRepository from '../repository/UserRepository'
 
 const INVALID_EMAIL_MESSAGE = UserRepository.INVALID_EMAIL_MESSAGE

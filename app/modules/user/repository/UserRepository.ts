@@ -5,7 +5,7 @@ import User from 'app/src/entities/User'
 import Error from '@/errors'
 
 import { ICreateUser } from '../@types'
-import { FIELD_VAR, LENGTH_VAR } from './defaults'
+import { FIELD_VAR, LENGTH_VAR } from '../defaults'
 
 
 @EntityRepository(User)
