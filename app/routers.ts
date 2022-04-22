@@ -1,14 +1,14 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-import { isAuthenticated } from "./middlewares/IsAuthenticated";
-import { IsAdmin } from "./middlewares/IsAdmin";
+import { isAuthenticated } from './middlewares/IsAuthenticated';
+import { IsAdmin } from './middlewares/IsAdmin';
 
-import userRouter from './user/router/UserRouters'
-import tokenJWTRouter from "./authenticate/router/AutheticateUserRouter";
+import userRouter from './user/router/UserRouters';
+import tokenJWTRouter from './authenticate/router/AutheticateUserRouter';
 
-const routers = Router()
+const routers = Router();
 
-routers.use('/user', isAuthenticated, IsAdmin, userRouter)
-routers.use('/token', tokenJWTRouter)
-
-export default routers
+routers.use('/user', isAuthenticated, IsAdmin, userRouter);
+routers.use('/token', tokenJWTRouter);
+const foo = '';
+export default routers;

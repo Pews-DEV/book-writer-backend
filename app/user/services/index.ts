@@ -1,7 +1,7 @@
-import CreateUserService  from './CreateUser'
+import CreateUserService from './CreateUser';
 
 const services = {
-  CreateUserService: CreateUserService
-}
+  CreateUserService: CreateUserService,
+};
 
-export default services
+export default services;
