@@ -17,6 +17,7 @@
     "git-commit-msg-linter": "^4.1.1",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
+    "lint-staged": "^12.4.0",
     "prettier": "^2.6.2",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
@@ -39,6 +40,13 @@
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
     "test": "jest --passWithNoTests --watch",
-    "test:staged": "jest --passWithNoTests"
+    "test:staged": "jest --passWithNoTests",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "yarn lint-fix",
+      "yarn test --bail --findRelatedTests || exit 0"
+    ]
   }
 }

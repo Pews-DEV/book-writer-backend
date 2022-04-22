@@ -4,11 +4,11 @@
  */
 
 export default {
-    roots: ['<rootDir>/app'],
-    collectCoverageFrom: ['<rootDir>/app/**/*.ts'],
-    coverageDirectory: 'coverage',
-    testEnvironment: 'node',
-    transform: {
-        '.+\\.ts$': 'ts-jest',
-    },
+  roots: ['<rootDir>/app'],
+  collectCoverageFrom: ['<rootDir>/app/**/*.ts'],
+  coverageDirectory: 'coverage',
+  testEnvironment: 'node',
+  transform: {
+    '.+\\.ts$': 'ts-jest',
+  },
 };
