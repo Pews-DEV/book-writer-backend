@@ -1,7 +1,7 @@
 const COVERAGE_EXPECTATION = process.env.NODE_ENV === 'CI' ? 70 : 0;
 
 export default {
-  roots: ['<rootDir>/app'],
+  roots: ['<rootDir>'],
   collectCoverageFrom: ['<rootDir>/app/**/*.ts'],
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'text-summary', 'cobertura', 'lcov'],
@@ -14,7 +14,11 @@ export default {
     },
   },
   testEnvironment: 'node',
+  setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
   transform: {
     '.+\\.ts$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '@/(.*)': '<rootDir>/app/$1',
   },
 };

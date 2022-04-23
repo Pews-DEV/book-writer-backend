@@ -1,4 +1,8 @@
-import 'reflect-metadata';
-import { createConnection } from 'typeorm';
+import { getConnectionOptions, createConnection } from 'typeorm';
 
-createConnection();
+export const createNewConnection = async () => {
+  const connectionOptions = await getConnectionOptions(process.env.NODE_ENV);
+  return createConnection({ ...connectionOptions, name: 'default' });
+};
+
+createNewConnection();

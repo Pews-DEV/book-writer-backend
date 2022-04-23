@@ -14,5 +14,6 @@
     ],
     "rules": {
       "prettier/prettier": "error"
-    }
+    },
+    "ignorePatterns": [".jest"]
   }
