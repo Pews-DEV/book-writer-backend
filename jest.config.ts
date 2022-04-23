@@ -1,7 +1,11 @@
-const COVERAGE_EXPECTATION = process.env.NODE_ENV === 'CI' ? 70 : 0;
+const COVERAGE_EXPECTATION = process.env.CI ? 70 : 0;
 
 export default {
-  roots: ['<rootDir>/app'],
+  roots: ['<rootDir>'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/app/src/migrations',
+    '<rootDir>/*/@types',
+  ],
   collectCoverageFrom: ['<rootDir>/app/**/*.ts'],
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'text-summary', 'cobertura', 'lcov'],
@@ -14,7 +18,11 @@ export default {
     },
   },
   testEnvironment: 'node',
+  setupFilesAfterEnv: ['<rootDir>/app/tests/setup.ts'],
   transform: {
     '.+\\.ts$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '@/(.*)': '<rootDir>/app/$1',
   },
 };

@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 
-import hash_password from '@/utils/bcrypt/hashPassword';
-import User from 'app/src/entities/User';
+import hashPassword from '@/utils/bcrypt/hashPassword';
+import User from '@/src/entities/User';
 
 import { ICreateUser } from '../@types';
 import { FIELD_VAR, LENGTH_VAR } from '../defaults';
@@ -13,7 +13,7 @@ class UserRepository extends Repository<User> {
   public static readonly INVALID_EMAIL_MESSAGE = 'Digite um email válido';
 
   async createAndSave(user: ICreateUser) {
-    const passwordHash = await hash_password(user.password);
+    const passwordHash = await hashPassword(user.password);
     const newUser = this.create({
       ...user,
       password: passwordHash,
@@ -36,6 +36,7 @@ class UserRepository extends Repository<User> {
     if (data) {
       return false;
     }
+
     return true;
   }
 }
