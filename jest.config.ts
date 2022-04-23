@@ -1,4 +1,4 @@
-const COVERAGE_EXPECTATION = process.env.NODE_ENV === 'CI' ? 70 : 0;
+const COVERAGE_EXPECTATION = process.env.CI ? 70 : 0;
 
 export default {
   roots: ['<rootDir>'],

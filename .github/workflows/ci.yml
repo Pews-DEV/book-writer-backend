@@ -41,4 +41,4 @@ jobs:
         run: yarn lint
 
       - name: Run tests
-        run: export NODE_ENV=DEV && yarn test:ci
+        run: export CI=true && yarn test:ci
