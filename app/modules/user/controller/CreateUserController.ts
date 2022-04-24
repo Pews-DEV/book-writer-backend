@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as yup from 'yup';
 
 import CreateUserService from '../services/CreateUser';
-import checkExist from '../utils/checkExists';
+import checkFieldExist from '../utils/checkFieldExist';
 
 export default class UserController {
   public static readonly schema = yup.object({
@@ -14,14 +14,14 @@ export default class UserController {
         .email('Insira um email válido')
         .required('O email é obrigatório')
         .test('exists', '${value} já está em uso', async value =>
-          checkExist('email', value),
+          checkFieldExist('email', value),
         ),
       username: yup
         .string()
         .min(4, 'O username deve conter no minimo 3 caracteres')
         .required('O username é obrigatório')
         .test('exists', '${value} já está em uso', async value =>
-          checkExist('username', value),
+          checkFieldExist('username', value),
         ),
       password: yup
         .string()
