@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import * as yup from 'yup';
 
-import UserServices from '../services';
+import CreateUserService from '../services/CreateUser';
 import checkExist from '../utils/checkExists';
 
 export default class UserController {
@@ -36,7 +36,7 @@ export default class UserController {
         abortEarly: false,
       });
       const userData = request.body;
-      const createUser = new UserServices.CreateUserService();
+      const createUser = new CreateUserService();
       const user = await createUser.execute(userData);
 
       return response.json({

@@ -6,3 +6,8 @@ export interface ICreateUser {
   password: string;
   is_admin?: boolean;
 }
+
+export interface IUserAuthetication {
+  email: string;
+  password: string;
+}
