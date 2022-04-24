@@ -4,7 +4,7 @@ import AuthenticateUserService from '../services/AuthenticateUserService';
 import { IUserAuthetication } from '../@types';
 
 class AuthenticateUserController {
-  async handleLogin(request: Request, response: Response): Promise<Response> {
+  async handle(request: Request, response: Response): Promise<Response> {
     const user: IUserAuthetication = request.body;
     const authenticateUserService = new AuthenticateUserService();
     const token = await authenticateUserService.execute(user);

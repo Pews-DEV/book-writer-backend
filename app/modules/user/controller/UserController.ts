@@ -30,7 +30,7 @@ export default class UserController {
     }),
   });
 
-  async create(request: Request, response: Response): Promise<Response> {
+  async handle(request: Request, response: Response): Promise<Response> {
     try {
       await UserController.schema.validate(request, {
         abortEarly: false,

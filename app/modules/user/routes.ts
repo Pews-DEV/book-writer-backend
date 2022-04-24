@@ -8,7 +8,7 @@ const userRouters = Router();
 const userController = new UserController();
 const authenticationController = new AuthenticateUserController();
 
-userRouters.post('/', userController.create);
-userRouters.post('/login/', authenticationController.handleLogin);
+userRouters.post('', userController.handle);
+userRouters.post('/login', authenticationController.handle);
 
 export default userRouters;
