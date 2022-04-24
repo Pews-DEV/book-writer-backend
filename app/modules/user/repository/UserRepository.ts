@@ -28,7 +28,7 @@ class UserRepository extends Repository<User> {
     return user;
   }
 
-  async checkIsUnique(name: string, value: string) {
+  async checkExist(name: string, value: string) {
     const where = {};
     where[name] = value;
     const data = await this.findOne({ where });

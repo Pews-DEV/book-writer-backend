@@ -10,6 +10,7 @@
     "@types/jsonwebtoken": "8.5.8",
     "@types/node": "8.0.29",
     "@types/uuid": "8.3.4",
+    "@types/yup": "0.29.13",
     "@typescript-eslint/eslint-plugin": "5.18.0",
     "@typescript-eslint/parser": "5.18.0",
     "eslint": "8.13.0",
@@ -30,12 +31,12 @@
   "dependencies": {
     "bcryptjs": "2.4.3",
     "express": "4.17.3",
-    "express-validator": "6.14.0",
     "jsonwebtoken": "8.5.1",
     "pg": "8.4.0",
     "reflect-metadata": "0.1.10",
     "typeorm": "0.2.41",
-    "uuid": "8.3.2"
+    "uuid": "8.3.2",
+    "yup": "0.32.11"
   },
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register app",

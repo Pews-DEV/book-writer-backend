@@ -1,32 +1,40 @@
 import { Request, Response } from 'express';
+import * as yup from 'yup';
 
-import getResult from '@/utils/express-validator/getResult';
-import validations from '../validations';
 import UserServices from '../services';
+import checkExist from '../utils/checkExists';
 
 export default class UserController {
-  public static readonly VALIDATIONS = [
-    validations.firstNameValidation,
-    validations.lastNameValidation,
-    validations.emailValidations,
-    validations.usernameValidations,
-    validations.passwordValidation,
-  ];
+  public static readonly schema = yup.object({
+    body: yup.object({
+      first_name: yup.string().required('O first_name é obrigatório'),
+      last_name: yup.string().required('O last_name é obrigatório'),
+      email: yup
+        .string()
+        .email('Insira um email válido')
+        .required('O email é obrigatório')
+        .test('exists', '${value} já está em uso', async value =>
+          checkExist('email', value),
+        ),
+      username: yup
+        .string()
+        .min(4, 'O username deve conter no minimo 3 caracteres')
+        .required('O username é obrigatório')
+        .test('exists', '${value} já está em uso', async value =>
+          checkExist('username', value),
+        ),
+      password: yup
+        .string()
+        .min(8, 'O password deve conter no minimo 8 caracteres')
+        .required('O password é obrigatório'),
+    }),
+  });
 
   async create(request: Request, response: Response): Promise<Response> {
-    const errors = getResult(request);
-
-    if (!errors.isEmpty()) {
-      return response.status(422).json({
-        status_code: 422,
-        success: false,
-        errors: errors.array({
-          onlyFirstError: true,
-        }),
-      });
-    }
-
     try {
+      await UserController.schema.validate(request, {
+        abortEarly: false,
+      });
       const userData = request.body;
       const createUser = new UserServices.CreateUserService();
       const user = await createUser.execute(userData);
@@ -37,7 +45,14 @@ export default class UserController {
         data: user,
       });
     } catch (err) {
-      throw new Error(err);
+      return response.status(422).json({
+        status_code: 422,
+        success: false,
+        errors: err.inner.map((error: yup.ValidationError) => ({
+          error: error.errors[0],
+          param: error.path,
+        })),
+      });
     }
   }
 }
