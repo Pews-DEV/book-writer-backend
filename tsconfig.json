@@ -10,6 +10,12 @@
       "outDir": "./build",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
-      "sourceMap": true
+      "sourceMap": true,
+      "strictPropertyInitialization": false,
+      "resolveJsonModule": true,
+      "baseUrl": "./",
+      "paths": {
+         "@/*": ["app/*"]
+      }
    }
 }
