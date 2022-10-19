@@ -17,7 +17,7 @@ model User {
   email      String   @unique
   userName   String   @map("user_name")
   password   String
-  is_admin   Boolean
+  isAdmin    Boolean  @map("is_admin")
   created_at DateTime @default(now()) @map("created_at")
   updated_at DateTime @updatedAt() @map("updated_at")
 
