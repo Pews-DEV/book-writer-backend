@@ -1,15 +1,28 @@
 {
-   "compilerOptions": {
-      "lib": [
-         "es5",
-         "es6"
-      ],
-      "target": "es5",
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "outDir": "./build",
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "sourceMap": true
-   }
+  "compilerOptions": {
+    "target": "es2017",                                
+    "experimentalDecorators": true,                   
+    "emitDecoratorMetadata": true,                    
+    "module": "commonjs",                                
+    "rootDir": "./src",                                  
+    "baseUrl": "./src",                                  
+    "paths": {
+      "@modules/*": ["./modules/*"],
+      "@config/*": ["./config/*"],
+      "@shared/*": ["./shared/*"],
+    },                                      
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],                                  
+    "resolveJsonModule": true,
+    "outDir": "./dist",                                   
+    "removeComments": true,                           
+    "importHelpers": true,                            
+    "esModuleInterop": true,                             
+    "forceConsistentCasingInFileNames": true,            
+    "strict": true,                                      
+    "useUnknownInCatchVariables": false,               
+    "skipLibCheck": true                                 
+  }
 }
