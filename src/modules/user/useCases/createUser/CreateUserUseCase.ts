@@ -4,6 +4,7 @@ import { ICreateUserDTO } from '@modules/user/dtos/ICreateUserDTO';
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
 import { User } from '@prisma/client';
 import { AppError } from '@shared/errors/AppError';
+import Encrypt from '@shared/utils/crypto/Encrypt';
 
 @injectable()
 export class CreateUserUseCase {
@@ -26,12 +27,14 @@ export class CreateUserUseCase {
       throw new AppError('Email already exists', 400);
     }
 
+    const encryptPassword = Encrypt({ password });
+
     const user = await this.userRepository.create({
       firstName,
       lastName,
       email,
       userName,
-      password,
+      password: encryptPassword,
       isAdmin,
     });
 
