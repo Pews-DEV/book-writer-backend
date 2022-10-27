@@ -6,6 +6,7 @@ import { DeleteUserController } from '@modules/user/useCases/deleteUser/DeleteUs
 import { FindUserByIdController } from '@modules/user/useCases/findUserById/FindUserByIdController';
 import { UpdateUserController } from '@modules/user/useCases/updateUser/UpdateUserController';
 
+import { isAdmin } from '../middlewares/isAdmin';
 import { isAuthenticated } from '../middlewares/isAuthenticated';
 
 const userRoutes = Router();
@@ -19,7 +20,7 @@ const deleteUserController = new DeleteUserController();
 userRoutes.get('/:id', isAuthenticated, findUserByIdController.handle);
 userRoutes.post('/', createUserController.handle);
 userRoutes.post('/authenticate', authenticateController.handle);
-userRoutes.put('/:id', updateUserController.handle);
-userRoutes.delete('/:id', deleteUserController.handle);
+userRoutes.put('/', isAuthenticated, updateUserController.handle);
+userRoutes.delete('/', isAuthenticated, isAdmin, deleteUserController.handle);
 
 export { userRoutes };
