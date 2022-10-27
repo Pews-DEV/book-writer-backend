@@ -37,7 +37,7 @@ export class AuthenticateUserUseCase {
     }
 
     const token = sign(
-      { name: user.userName, email: user.email },
+      { userName: user.userName, email: user.email },
       jwtConfig.secretKey,
       { subject: user.id, expiresIn: jwtConfig.expiresIn },
     );

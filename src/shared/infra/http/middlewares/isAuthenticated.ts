@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { NextFunction, Request } from 'express';
 import { verify } from 'jsonwebtoken';
 
 import { jwtConfig } from '@config/jwtConfig';
@@ -9,7 +9,11 @@ type ITokenPayload = {
   email: string;
   sub: string;
 };
-export function isAuthenticated(request: Request): void {
+export function isAuthenticated(
+  request: Request,
+  response: Response,
+  next: NextFunction,
+): void {
   const authenticate = request.headers.authorization;
 
   if (!authenticate) {
@@ -30,6 +34,8 @@ export function isAuthenticated(request: Request): void {
       email,
       userName,
     };
+
+    return next();
   } catch {
     throw new AppError('Invalid token');
   }
