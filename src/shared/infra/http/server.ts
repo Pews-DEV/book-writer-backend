@@ -8,6 +8,7 @@ import { logger } from '@shared/providers/logger/implementations/LoggerProvider'
 
 import '../../containers';
 import { router } from './routes';
+import '../database';
 
 const app = express();
 
