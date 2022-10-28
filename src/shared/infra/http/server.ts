@@ -17,4 +17,6 @@ app.use(cors());
 app.use(getErrors);
 app.use(router);
 
-app.listen(8080, () => logger.info('Server is running on port 8080'));
+app.listen(process.env.PORT, () =>
+  logger.info('Server is running on port 8080'),
+);
