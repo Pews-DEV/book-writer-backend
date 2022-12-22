@@ -1,17 +1,17 @@
 /* eslint-disable no-return-await */
 import { mock, MockProxy } from 'jest-mock-extended';
 
-import { UserRepository } from '@modules/user/repositories/implementations/UserRepository';
+import { IUserRepository } from '@modules/user/repositories/IUserRepository';
 import Encrypt from '@shared/utils/crypto/Encrypt';
 
 import { CreateUserUseCase } from './CreateUserUseCase';
 
 describe('CreateUserUseCase', () => {
-  let userRepository: MockProxy<UserRepository>;
+  let userRepository: MockProxy<IUserRepository>;
   let sut: CreateUserUseCase;
 
   beforeEach(() => {
-    userRepository = mock<UserRepository>();
+    userRepository = mock();
     userRepository.create.mockResolvedValue({
       id: 'any_id',
       firstName: 'any_first_name',

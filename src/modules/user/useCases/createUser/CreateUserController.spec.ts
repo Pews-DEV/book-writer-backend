@@ -1,9 +1,8 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { mock, MockProxy } from 'jest-mock-extended';
 import { container } from 'tsyringe';
 
-import { UserRepository } from '@modules/user/repositories/implementations/UserRepository';
+import { ICreateUserDTO } from '@modules/user/dtos/ICreateUserDTO';
+import { IUserRepository } from '@modules/user/repositories/IUserRepository';
 
 import { CreateUserController } from './CreateUserController';
 import { CreateUserUseCase } from './CreateUserUseCase';
@@ -11,11 +10,11 @@ import { CreateUserUseCase } from './CreateUserUseCase';
 const tsyringeContainerMock = jest.spyOn(container, 'resolve');
 
 describe('CreateUserController', () => {
-  let userRepository: MockProxy<UserRepository>;
+  let userRepository: MockProxy<IUserRepository>;
   let sut: CreateUserController;
 
   beforeEach(() => {
-    userRepository = mock<UserRepository>();
+    userRepository = mock();
     userRepository.create.mockResolvedValue({
       id: 'any_id',
       firstName: 'any_first_name',
@@ -29,16 +28,30 @@ describe('CreateUserController', () => {
     });
     userRepository.findByEmail.mockResolvedValue(null);
     tsyringeContainerMock.mockImplementation(() => ({
-      execute: (params: any) => {
+      execute: ({
+        firstName,
+        lastName,
+        email,
+        userName,
+        password,
+        isAdmin,
+      }) => {
         const user = new CreateUserUseCase(userRepository);
-        return user.execute(params);
+        return user.execute({
+          firstName,
+          lastName,
+          email,
+          userName,
+          password,
+          isAdmin,
+        });
       },
     }));
     sut = new CreateUserController();
   });
 
   it('shoulbe be able to return to 200 and a client', async () => {
-    const bodyRequest = {
+    const bodyRequest: ICreateUserDTO = {
       firstName: 'any_first_name',
       lastName: 'any_last_name',
       email: 'any_email',
@@ -66,6 +79,7 @@ describe('CreateUserController', () => {
     const statusResponse = {
       json: jest.fn().mockReturnValue(responseJson),
     };
+
     const response: any = {
       json: jest.fn(),
       status: jest.fn(() => statusResponse),
