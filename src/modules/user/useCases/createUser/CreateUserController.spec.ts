@@ -50,7 +50,7 @@ describe('CreateUserController', () => {
     sut = new CreateUserController();
   });
 
-  it('shoulbe be able to return to 200 and a client', async () => {
+  it('should be able to return to 200 and a client', async () => {
     const bodyRequest: ICreateUserDTO = {
       firstName: 'any_first_name',
       lastName: 'any_last_name',
