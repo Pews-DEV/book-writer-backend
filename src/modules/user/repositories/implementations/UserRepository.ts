@@ -2,18 +2,20 @@ import { ICreateUserDTO } from '@modules/user/dtos/ICreateUserDTO';
 import { IUpdateUserDTO } from '@modules/user/dtos/IUpdateUserDTO';
 import { User } from '@prisma/client';
 import prismaClient from '@shared/infra/database';
+import { Context } from '@shared/infra/database/context';
 
 import { IUserRepository } from '../IUserRepository';
 
 export class UserRepository implements IUserRepository {
+  constructor(private readonly ctx: Context = { prisma: prismaClient }) {}
   async findById(id: string): Promise<User | null> {
-    const user = await prismaClient.user.findUnique({ where: { id } });
+    const user = await this.ctx.prisma.user.findUnique({ where: { id } });
 
     return user;
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    const user = await prismaClient.user.findUnique({ where: { email } });
+    const user = await this.ctx.prisma.user.findUnique({ where: { email } });
 
     return user;
   }
@@ -26,7 +28,7 @@ export class UserRepository implements IUserRepository {
     password,
     isAdmin = false,
   }: ICreateUserDTO): Promise<User> {
-    const user = await prismaClient.user.create({
+    const user = await this.ctx.prisma.user.create({
       data: { firstName, lastName, email, userName, password, isAdmin },
     });
 
@@ -42,7 +44,7 @@ export class UserRepository implements IUserRepository {
     password,
     isAdmin,
   }: IUpdateUserDTO): Promise<User> {
-    const user = await prismaClient.user.update({
+    const user = await this.ctx.prisma.user.update({
       where: { id },
       data: { firstName, lastName, email, userName, password, isAdmin },
     });
@@ -51,6 +53,6 @@ export class UserRepository implements IUserRepository {
   }
 
   async delete(id: string): Promise<void> {
-    await prismaClient.user.delete({ where: { id } });
+    await this.ctx.prisma.user.delete({ where: { id } });
   }
 }
