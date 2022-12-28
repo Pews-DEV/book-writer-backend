@@ -3,9 +3,8 @@ import { mock, MockProxy } from 'jest-mock-extended';
 import { container } from 'tsyringe';
 
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
-
-import { DeleteUserController } from './DeleteUserController';
-import { DeleteUserUseCase } from './DeleteUserUseCase';
+import { DeleteUserController } from '@modules/user/useCases/deleteUser/DeleteUserController';
+import { DeleteUserUseCase } from '@modules/user/useCases/deleteUser/DeleteUserUseCase';
 
 const tsringeContainerMock = jest.spyOn(container, 'resolve');
 describe('DeleteUserController', () => {

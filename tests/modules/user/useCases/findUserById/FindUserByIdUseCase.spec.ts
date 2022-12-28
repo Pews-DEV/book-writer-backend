@@ -2,25 +2,14 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
+import { FindUserByIdUseCase } from '@modules/user/useCases/findUserById/FindUserByIdUseCase';
 
-import { UpdateUserUseCase } from './UpdateUserUseCase';
-
-describe('UpdateUserUseCase', () => {
+describe('FindUserByIdUseCase', () => {
   let userRepository: MockProxy<IUserRepository>;
-  let sut: UpdateUserUseCase;
+  let sut: FindUserByIdUseCase;
+
   beforeEach(() => {
     userRepository = mock();
-    userRepository.update.mockResolvedValue({
-      id: 'any_id',
-      firstName: 'any_first_name',
-      lastName: 'any_last_name',
-      email: 'any_email',
-      userName: 'any_user_name',
-      password: 'any_password',
-      isAdmin: true,
-      created_at: new Date('2022-08-23T17:33:38.232Z'),
-      updated_at: new Date('2022-08-23T17:33:38.232Z'),
-    });
     userRepository.findById.mockResolvedValue({
       id: 'any_id',
       firstName: 'any_first_name',
@@ -32,18 +21,11 @@ describe('UpdateUserUseCase', () => {
       created_at: new Date('2022-08-23T17:33:38.232Z'),
       updated_at: new Date('2022-08-23T17:33:38.232Z'),
     });
-    sut = new UpdateUserUseCase(userRepository);
+    sut = new FindUserByIdUseCase(userRepository);
   });
-  it('should be able to update user', async () => {
-    const request = await sut.execute({
-      id: 'any_id',
-      firstName: 'any_first_name',
-      lastName: 'any_last_name',
-      email: 'any_email',
-      userName: 'any_user_name',
-      password: 'any_password',
-      isAdmin: true,
-    });
+
+  it('should be able to find user by id', async () => {
+    const request = await sut.execute('any_id');
 
     expect(request).toStrictEqual({
       id: 'any_id',
@@ -61,15 +43,7 @@ describe('UpdateUserUseCase', () => {
   it('should be able to throw AppError', async () => {
     userRepository.findById.mockResolvedValueOnce(null);
     const request = async () => {
-      return await sut.execute({
-        id: 'any_id',
-        firstName: 'any_first_name',
-        lastName: 'any_last_name',
-        email: 'any_email',
-        userName: 'any_user_name',
-        password: 'any_password',
-        isAdmin: true,
-      });
+      return await sut.execute('any_id');
     };
 
     expect(request()).rejects.toEqual({

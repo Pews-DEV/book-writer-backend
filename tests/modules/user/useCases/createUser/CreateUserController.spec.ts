@@ -1,20 +1,20 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { container } from 'tsyringe';
 
-import { IUpdateUserDTO } from '@modules/user/dtos/IUpdateUserDTO';
+import { ICreateUserDTO } from '@modules/user/dtos/ICreateUserDTO';
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
-
-import { UpdateUserController } from './UpdateUserController';
-import { UpdateUserUseCase } from './UpdateUserUseCase';
+import { CreateUserController } from '@modules/user/useCases/createUser/CreateUserController';
+import { CreateUserUseCase } from '@modules/user/useCases/createUser/CreateUserUseCase';
 
 const tsyringeContainerMock = jest.spyOn(container, 'resolve');
-describe('UpdateUserController', () => {
+
+describe('CreateUserController', () => {
   let userRepository: MockProxy<IUserRepository>;
-  let sut: UpdateUserController;
+  let sut: CreateUserController;
 
   beforeEach(() => {
     userRepository = mock();
-    userRepository.findById.mockResolvedValue({
+    userRepository.create.mockResolvedValue({
       id: 'any_id',
       firstName: 'any_first_name',
       lastName: 'any_last_name',
@@ -25,20 +25,18 @@ describe('UpdateUserController', () => {
       created_at: new Date('2022-08-23T17:33:38.232Z'),
       updated_at: new Date('2022-08-23T17:33:38.232Z'),
     });
+    userRepository.findByEmail.mockResolvedValue(null);
     tsyringeContainerMock.mockImplementation(() => ({
       execute: ({
-        id,
         firstName,
         lastName,
         email,
         userName,
         password,
         isAdmin,
-      }: IUpdateUserDTO) => {
-        const updateUserUseCase = new UpdateUserUseCase(userRepository);
-
-        return updateUserUseCase.execute({
-          id,
+      }) => {
+        const user = new CreateUserUseCase(userRepository);
+        return user.execute({
           firstName,
           lastName,
           email,
@@ -48,10 +46,20 @@ describe('UpdateUserController', () => {
         });
       },
     }));
-    sut = new UpdateUserController();
+    sut = new CreateUserController();
   });
-  it('should be able update user', async () => {
-    userRepository.update.mockResolvedValue({
+
+  it('should be able to return to 200 and a client', async () => {
+    const bodyRequest: ICreateUserDTO = {
+      firstName: 'any_first_name',
+      lastName: 'any_last_name',
+      email: 'any_email',
+      userName: 'any_user_name',
+      password: 'any_password',
+      isAdmin: true,
+    };
+
+    const responseJson = {
       id: 'any_id',
       firstName: 'any_first_name',
       lastName: 'any_last_name',
@@ -61,29 +69,14 @@ describe('UpdateUserController', () => {
       isAdmin: true,
       created_at: new Date('2022-08-23T17:33:38.232Z'),
       updated_at: new Date('2022-08-23T17:33:38.232Z'),
-    });
-
-    const paramsRequest = {
-      id: 'any_id',
-    };
-
-    const paramsBody = {
-      id: 'any_id',
-      firstName: 'any_first_name',
-      lastName: 'any_last_name',
-      email: 'any_email',
-      userName: 'any_user_name',
-      password: 'any_password',
-      isAdmin: true,
     };
 
     const request: any = {
-      user: jest.fn(() => paramsRequest),
-      body: jest.fn(() => paramsBody),
+      body: bodyRequest,
     };
 
     const statusResponse = {
-      json: jest.fn(),
+      json: jest.fn().mockReturnValue(responseJson),
     };
 
     const response: any = {
@@ -93,8 +86,8 @@ describe('UpdateUserController', () => {
 
     await sut.handle(request, response);
 
-    expect(response.status).toBeCalledWith(201);
-    expect(response.status().json).toBeCalledWith({
+    expect(response.status).toBeCalledWith(200);
+    expect(response.status().json()).toEqual({
       id: 'any_id',
       firstName: 'any_first_name',
       lastName: 'any_last_name',
@@ -105,5 +98,6 @@ describe('UpdateUserController', () => {
       created_at: new Date('2022-08-23T17:33:38.232Z'),
       updated_at: new Date('2022-08-23T17:33:38.232Z'),
     });
+    expect(request.body).toEqual(bodyRequest);
   });
 });

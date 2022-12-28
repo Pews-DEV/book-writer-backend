@@ -2,9 +2,8 @@ import { MockProxy, mock } from 'jest-mock-extended';
 import { container } from 'tsyringe';
 
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
-
-import { FindUserByIdController } from './FindUserByIdController';
-import { FindUserByIdUseCase } from './FindUserByIdUseCase';
+import { FindUserByIdController } from '@modules/user/useCases/findUserById/FindUserByIdController';
+import { FindUserByIdUseCase } from '@modules/user/useCases/findUserById/FindUserByIdUseCase';
 
 const tsyringeContainerMock = jest.spyOn(container, 'resolve');
 describe('FindUserByIdController', () => {
