@@ -2,9 +2,8 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
+import { CreateUserUseCase } from '@modules/user/useCases/createUser/CreateUserUseCase';
 import Encrypt from '@shared/utils/crypto/Encrypt';
-
-import { CreateUserUseCase } from './CreateUserUseCase';
 
 describe('CreateUserUseCase', () => {
   let userRepository: MockProxy<IUserRepository>;

@@ -1,7 +1,7 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 
-import { IUserRepository } from '../../repositories/IUserRepository';
-import { DeleteUserUseCase } from './DeleteUserUseCase';
+import { IUserRepository } from '@modules/user/repositories/IUserRepository';
+import { DeleteUserUseCase } from '@modules/user/useCases/deleteUser/DeleteUserUseCase';
 
 describe('DeleteUserUseCase', () => {
   let userRepository: MockProxy<IUserRepository>;
